@@ -2,8 +2,7 @@ package com.example.store.controller;
 
 import com.example.store.dto.OrderDTO;
 import com.example.store.entity.Order;
-import com.example.store.mapper.OrderMapper;
-import com.example.store.repository.OrderRepository;
+import com.example.store.processor.api.OrderProcessor;
 
 import lombok.RequiredArgsConstructor;
 
@@ -17,17 +16,22 @@ import java.util.List;
 @RequiredArgsConstructor
 public class OrderController {
 
-    private final OrderRepository orderRepository;
-    private final OrderMapper orderMapper;
+    private final OrderProcessor orderProcessor;
 
     @GetMapping
     public List<OrderDTO> getAllOrders() {
-        return orderMapper.ordersToOrderDTOs(orderRepository.findAll());
+        return orderProcessor.findAll();
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public OrderDTO createOrder(@RequestBody Order order) {
-        return orderMapper.orderToOrderDTO(orderRepository.save(order));
+        return orderProcessor.create(order);
+    }
+
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public OrderDTO getOrderById(@PathVariable("id") long id) {
+        return orderProcessor.findById(id);
     }
 }
