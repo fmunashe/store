@@ -11,7 +11,7 @@ COPY build.gradle .
 COPY settings.gradle .
 
 # Copy the compiled jar file into the container
-COPY build/libs/*.jar store-springboot-app.jar
+COPY app/build/libs/*.jar store-springboot-app.jar
 
 # Expose port 8080 (default for Spring Boot)
 EXPOSE 8080
