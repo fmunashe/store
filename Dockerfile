@@ -10,8 +10,14 @@ COPY gradle ./gradle
 COPY build.gradle .
 COPY settings.gradle .
 
+# Install dependencies and build the application
+RUN chmod +x gradlew
+RUN ./gradlew clean
+RUN ./gradlew :spotlessApply
+RUN ./gradlew build
+
 # Copy the compiled jar file into the container
-COPY app/build/libs/*.jar store-springboot-app.jar
+COPY build/libs/*.jar store-springboot-app.jar
 
 # Expose port 8080 (default for Spring Boot)
 EXPOSE 8080
