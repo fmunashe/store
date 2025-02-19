@@ -37,7 +37,7 @@ jobs:
               uses: actions/setup-java@v2
               with:
                   java-version: '17'
-                  distribution: 'Adoptium'
+                  distribution: temurin
 
             # Set up Gradle (you can specify a Gradle wrapper version if needed)
             - name: Set up Gradle
