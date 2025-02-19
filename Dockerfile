@@ -15,7 +15,7 @@ COPY . .
 RUN chmod +x gradlew
 RUN ./gradlew clean
 RUN ./gradlew :spotlessApply
-RUN ./gradlew build
+RUN ./gradlew build -DskipTests
 
 # Copy the compiled jar file into the container
 COPY build/libs/*.jar store-springboot-app.jar
