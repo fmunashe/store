@@ -9,7 +9,7 @@ COPY gradlew .
 COPY gradle ./gradle
 COPY build.gradle .
 COPY settings.gradle .
-COPY . .
+COPY src src
 
 # Install dependencies and build the application
 RUN chmod +x gradlew
